@@ -1,47 +1,24 @@
 var J = J || {};
 
-J.InstaMedia = function (media) {
+J.InstaMedia = function (entry) {
 	var that = this;
-	this.media = media;
-}
+	
+	this.id = entry.id;
+	this.type = entry.type;
+	this.video_URL = "";
+	this.low_resolution = entry.low_resolution;
+	this.username = entry.username;
+	this.caption_profile_pic = entry.caption_profile_pic;
+	this.text = entry.text;
+	this.user_has_liked = entry.user_has_liked;
 
-J.InstaMedia.prototype.createMediaBox = function() {
-
-	var media = this.media;
-
-	var type = "";
-		if (media.type == "video") {
-			type = '<video width="223" height="223" controls>'+
-						  '<source src="'+media.video+'" type="video/mp4">'+
-						  'Your browser does not support the video tag.'+
-						'</video>';
-		} else {
-			type = '<img src="'+media.low_resolution+'" />';						
-		}
-
-		var box = '<div class="col-md-3">'+
-						'<div id="'+media.id+'" class="box">'+
-							'<div class="image-box">'+
-								'<a class="group" rel="group1" href="#">'+
-						 			type + 
-								'</a>'+
-							'</div>'+
-							'<div class="stats-box">'+
-								'<div class="stats-inner">'+
-									'<ul>'+
-										'<li><i class="fa fa-heart"></i> '+media.likes+'</li>'+
-										'<li><i class="fa fa-comments"></i> '+media.comments+'</li>'+
-									'</ul>'+
-								'</div>'+
-							'</div>'+
-						'<div class="tags-box">'+
-							'<i class="fa fa-tags"></i> '+
-						'</div>'+
-					'</div>'+
-					'</div>';
+	this.likes = entry.likes;
+	this.comments = entry.comments;
 
 
-	return box;
+	if (this.type == "video") {
+		this.video_URL = entry.video.url;
+	}
 
 
 }

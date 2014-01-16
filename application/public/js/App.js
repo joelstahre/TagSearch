@@ -11,7 +11,6 @@ J.App = function () {
 
 J.App.prototype.init = function () { 
 	this.twitter.getTrends();
-	//this.instagram.getMedia();
 	this.registerClickEvents();
 }
 
@@ -32,6 +31,8 @@ J.App.prototype.registerClickEvents = function () {
 			that.instagram.getMedia(tag);
 		}
 	});
+
+	
 }
 
 

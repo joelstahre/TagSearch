@@ -59,6 +59,9 @@ body {
 	margin-top: 5px;
 }
 
+.aboutLI {
+	margin-right: 15px;
+}
 
 .formError {
 	border-color: #a94442;
@@ -68,6 +71,10 @@ body {
 
 #wrap {
 	margin-top: 70px;
+}
+
+.welcome-user {
+	font-weight: bold;
 }
 
 /* IMG BOX
@@ -109,15 +116,23 @@ body {
 .stats-inner ul {
 	list-style-type: none;
 	padding: 0;
+	overflow: hidden;
+	width: 200px;
+	margin: 0 auto;
+
 }
 
 .stats-inner li {
-	margin-left: 5px;
+	float: left;
+	width: 100px;
+	text-align: center;
 }
 
-.tags-box {
+.type-box {
 	width: 225px;
 	margin: 20px auto;
+	font-size: 24px;
+	text-align: center;
 }
 
 
@@ -145,6 +160,7 @@ body {
 
 .modal-aside {
 	padding: 0 10px;
+	height: 345px;
 }
 
 .modal-aside-pic {
@@ -154,4 +170,15 @@ body {
 .usernameHeading {
 	font-weight: bold;
 	font-size: 20px;
+}
+
+.like {
+	width: 100%;
+	text-align: center;
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.like a {
+	color: #CE2A34;
 }

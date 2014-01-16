@@ -18,6 +18,10 @@ class SignInHandler {
 		//var_dump($_SESSION);
 	}
 
+	public function sendToInsta() {
+		header("Location: https://api.instagram.com/oauth/authorize?client_id=648d5bb844884b7ab01141109a108660&redirect_uri=http://www.tagsearch.se&scope=likes&response_type=code");
+	}					  
+
 
 	public function signIn() {
 		$code = $_GET["code"];
@@ -68,25 +72,8 @@ class SignInHandler {
 			
 			echo "<li><p class='navbar-text welcome-user'> Welcome " . $_SESSION["user"]["username"] . "</p> <img class='profilePic' src='" . $_SESSION["user"]["profile_picture"] . "' height='40' width='40''></li> <li><a href='?logout'>Sign Out </a></li>";
 		} else {
-			echo "<li><a href='https://api.instagram.com/oauth/authorize/?client_id=648d5bb844884b7ab01141109a108660&redirect_uri=http://www.tagsearch.se&response_type=code'><i class='fa fa-instagram fa-lg'></i> Sign in with Instagram</a></li>";
+			echo "<li><a href='?signin'><i class='fa fa-instagram fa-lg'></i> Sign in with Instagram</a></li>";
 		}
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

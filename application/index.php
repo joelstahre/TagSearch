@@ -1,16 +1,23 @@
 <?php
-require_once("signIn.php");
+require_once("backend/SignIn.php");
 session_start();
 
-check();
+$signIn = new SignInHandler();
+
+if (isset($_GET["signin"])) {
+	$signIn->sendToInsta();
+}
+
+$signIn->check();
 
 ?>
 
 <!doctype html>
-<html lang='sv'>
+<html lang='en'>
 	<head>
 		<meta charset='utf-8' />
 		<title>Projekt - Webbteknik II</title>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 		<meta name='description' content='Projekt - Webbteknik II' />
 		<link rel='stylesheet' href='//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css'>
 		<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
@@ -34,11 +41,11 @@ check();
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				
-			    <?php searchBar(); ?>
+			    <?php $signIn->searchBar(); ?>
 
 			    <ul class="nav navbar-nav navbar-right">
-			    	<?php signInBar(); ?>
-			      	<li><a href="#">About</a></li>
+			    	<?php $signIn->signInBar(); ?>
+			      	<li class="aboutLI"><a href="#">About</a></li>
 			      	
 			    </ul>
 			</div><!-- /.navbar-collapse -->
@@ -55,7 +62,7 @@ check();
 					<div class="col-md-3">
 						<div class="box">
 							<div class="trends-header">
-			                    <h3>Top trends on Twitter right now</h3>
+			                    <h4>Top trends in Sweden on Twitter</h4>
 			                </div>
 			                <ul id="trendsList" class="nav nav-pills nav-stacked">
 								
@@ -98,6 +105,8 @@ check();
 		<script src='public/js/App.js'></script>
 		<script src='public/js/Twitter.js'></script>
 		<script src='public/js/Instagram.js'></script>
+		<script src='public/js/InstaHTML.js'></script>
 		<script src='public/js/InstaMedia.js'></script>
+		<script src='public/js/Ajax.js'></script>
 	</body>
 </html>

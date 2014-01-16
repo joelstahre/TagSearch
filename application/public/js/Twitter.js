@@ -39,11 +39,5 @@ J.Twitter.prototype.renderTrends = function(trends) {
 	$(".tag").click( function() {
 		that.instagram.getMedia($( this ).html());
 	});
-
-	$("#loadMore").click( function() {
-		that.instagram.loadMoreMedia();
-
-	});
-	
 }
 

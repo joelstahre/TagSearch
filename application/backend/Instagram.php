@@ -11,7 +11,6 @@ class Instagram {
 	private $tagSearchURL = "https://api.instagram.com/v1/tags/";
 	private $tagSearchURLClient = "/media/recent?client_id=";
 	private $tagSearchURLAccessToken = "/media/recent?access_token=";
-
 	private $code;
 
 
@@ -142,6 +141,45 @@ class Instagram {
 	}
 
 
+	public function doLike($id, $accessToken) {
+
+		$url = "https://api.instagram.com/v1/media/".$id."/likes";
+	    $fields = array(
+	        'access_token'       =>      $accessToken
+	    );
+	 
+	    $ch = curl_init();
+
+	    $options = array(CURLOPT_URL => $url,
+	    				 CURLOPT_POST => true,
+	    				 CURLOPT_POSTFIELDS => http_build_query($fields),
+	    				 CURLOPT_RETURNTRANSFER => true);
+	    curl_setopt_array($ch, $options);
+		$result = curl_exec($ch);
+		curl_close($ch);
+
+        return json_decode($result);
+	}
+
+	public function unLike($id, $accessToken) {
+
+		$url = "https://api.instagram.com/v1/media/".$id."/likes?access_token=".$accessToken."";
+
+		$ch = curl_init();
+
+		$options = array(CURLOPT_URL => $url,
+	    				 CURLOPT_CUSTOMREQUEST => "DELETE",
+	    				 CURLOPT_RETURNTRANSFER => true);
+
+	    curl_setopt_array($ch, $options);
+	    $result = curl_exec($ch);
+	    $result = json_decode($result);
+	    curl_close($ch);
+
+        return $result;
+	}
+
+
 
 	public function getStructuredArray($data) {
 
@@ -162,12 +200,19 @@ class Instagram {
 			$object["likes"] = $obj->likes->count;
 			$object["comments"] = $obj->comments->count;
 			$object["tags"] = $obj->tags;
+			$object["user_has_liked"] = $obj->user_has_liked;
 
 			$returnArray["instagram"][] = $object;	
 		}
  
 		$pagination = array();
-		$pagination["next_url"] = $data->pagination->next_url;
+		
+		if (!isset($_SESSION["signedIN"])) {
+			$pagination["next_url"] = false;
+		} else {
+			$pagination["next_url"] = $data->pagination->next_url;
+		}
+		
 		$returnArray["pagination"] = $pagination;
 
 		return $returnArray;
