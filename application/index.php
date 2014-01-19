@@ -95,10 +95,10 @@ $signIn->check();
 	      	<div class='container'>
 	        	<p class='text-muted'>Copyright 
 	        		<a href='http://joelstahre.com'>Joel Stahre</a>
-	        		<a href='http://joelstahre.com'> <i class="fa fa-github fa-lg"></i></a>
-	        		<a href='http://joelstahre.com'> <i class="fa fa-facebook fa-lg"></i></a>
-	        		<a href='http://joelstahre.com'> <i class="fa fa-twitter fa-lg"></i></a>
-	        		<a href='http://joelstahre.com'> <i class="fa fa-instagram fa-lg"></i></a>
+	        		<a href='https://github.com/joelstahre'> <i class="fa fa-github fa-lg"></i></a>
+	        		<a href='https://www.facebook.com/joel.stahre'> <i class="fa fa-facebook fa-lg"></i></a>
+	        		<a href='https://twitter.com/joelstahre'> <i class="fa fa-twitter fa-lg"></i></a>
+	        		<a href='http://instagram.com/joelstahre'> <i class="fa fa-instagram fa-lg"></i></a>
 
 	        	</p>
 	      	</div>
