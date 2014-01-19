@@ -81,9 +81,9 @@ class SignInHandler {
 	public function signInBar() {
 		if (isset($_SESSION["signedIN"]) && $_SESSION["signedIN"]) {
 			
-			echo "<li><p class='navbar-text welcome-user'> Welcome " . $_SESSION["user"]["username"] . "</p> <img class='profilePic' src='" . $_SESSION["user"]["profile_picture"] . "' height='40' width='40' alt='profile picture'></li> <li><a href='?logout'>Sign Out </a></li>";
+			echo "<li><p class='navbar-text welcome-user'> Welcome " . $_SESSION["user"]["username"] . "</p> <img class='profilePic' src='" . $_SESSION["user"]["profile_picture"] . "' height='40' width='40' alt='profile picture'></li> <li class='lifix'><a href='?logout'>Sign Out </a></li>";
 		} else {
-			echo "<li><a href='?signin'><i class='fa fa-instagram fa-lg'></i> Sign in with Instagram</a></li>";
+			echo "<li class='lifix'><a href='?signin'><i class='fa fa-instagram fa-lg'></i> Sign in with Instagram</a></li>";
 		}
 	}
 

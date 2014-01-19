@@ -44,7 +44,7 @@ $signIn->check();
 
 			    <ul class="nav navbar-nav navbar-right">
 			    	<?php $signIn->signInBar(); ?>
-			      	<li class="aboutLI"><a href="#">About</a></li>
+			      	<!--<li class="aboutLI"><a href="#">About</a></li>-->
 			      	
 			    </ul>
 			</div><!-- /.navbar-collapse -->
