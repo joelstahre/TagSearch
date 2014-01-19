@@ -3,8 +3,9 @@ require_once("backend/Instagram.php");
 
 class SignInHandler {
 
+
 	public function check() {
-			//TODO: fixa något snyggare lösning?
+
 		if (isset($_GET["code"])) {
 			$this->signIn();
 			header("Location: http://www.tagsearch.se/");
@@ -14,8 +15,6 @@ class SignInHandler {
 			$this->signOut();
 			header("Location: http://www.tagsearch.se/");
 		}
-
-		//var_dump($_SESSION);
 	}
 
 	public function sendToInsta() {
@@ -23,6 +22,9 @@ class SignInHandler {
 	}					  
 
 
+	/**
+	 * [Sign in the user.]
+	 */
 	public function signIn() {
 		$code = $_GET["code"];
 
@@ -39,9 +41,12 @@ class SignInHandler {
 		} catch (Exception $e) {
 			var_dump($e->message());
 		}
+
 	}
 
-
+	/**
+	 * [Unset session]
+	 */
 	public function signOut() {
 
 		unset($_SESSION['accessToken']);
@@ -50,6 +55,9 @@ class SignInHandler {
 
 	}
 
+	/**
+	 * [Handles the html får the searchbar]
+	 */
 	public function searchBar() {
 		if (isset($_SESSION["signedIN"]) && $_SESSION["signedIN"]) {
 			
@@ -59,18 +67,21 @@ class SignInHandler {
 					    <input type='text' id='searchField' class='form-control' placeholder='Search tag'>
 					</div>
 					<button type='button' id='searchBTN' class='btn btn-default'>Submit</button>
-				  </form>";
+				  </form>
+				  <div id='recent'></div>";
 		}
 		else {
 			echo "<p class='navbar-text'>Sign in to make a tag-search!</p>";
 		}
 	}
 
-
+	/**
+	 * [Handles the html får the signinbar]
+	 */
 	public function signInBar() {
 		if (isset($_SESSION["signedIN"]) && $_SESSION["signedIN"]) {
 			
-			echo "<li><p class='navbar-text welcome-user'> Welcome " . $_SESSION["user"]["username"] . "</p> <img class='profilePic' src='" . $_SESSION["user"]["profile_picture"] . "' height='40' width='40''></li> <li><a href='?logout'>Sign Out </a></li>";
+			echo "<li><p class='navbar-text welcome-user'> Welcome " . $_SESSION["user"]["username"] . "</p> <img class='profilePic' src='" . $_SESSION["user"]["profile_picture"] . "' height='40' width='40' alt='profile picture'></li> <li><a href='?logout'>Sign Out </a></li>";
 		} else {
 			echo "<li><a href='?signin'><i class='fa fa-instagram fa-lg'></i> Sign in with Instagram</a></li>";
 		}

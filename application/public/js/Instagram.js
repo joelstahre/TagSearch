@@ -2,7 +2,6 @@ var J = J || {};
 
 J.Instagram = function () {
 	var that = this;
-	this.requestPath = "backend/functions.php";
 
 	this.oldTag = "";
 	this.currentTag = "";
@@ -14,7 +13,10 @@ J.Instagram = function () {
 	this.ajax = new J.Ajax(this, this.InstaHTML);
 }
 
-
+/**
+ * @param  string tag
+ * @return void
+ */
 J.Instagram.prototype.getMedia = function(tag) {
 	var that = this;
 
@@ -27,11 +29,13 @@ J.Instagram.prototype.getMedia = function(tag) {
 	$('#loadingDiv').show();
 
 	// Ajax Request.
-	this.ajax.getMedia(this.requestPath, tag);
+	this.ajax.request("tag", tag);
 }
 
 
-
+/**
+ * @return void
+ */
 J.Instagram.prototype.loadMoreMedia = function() {
 	var that = this;
 
@@ -39,10 +43,14 @@ J.Instagram.prototype.loadMoreMedia = function() {
 	$('#buttonLoader').show();
 
 	// Ajax Request.
-	this.ajax.loadMoreMedia(this.requestPath, this.nextMediaSet);
+	this.ajax.request("loadMore", this.nextMediaSet);
 
 }
 
+/**
+ * @param  array media
+ * @return void
+ */
 J.Instagram.prototype.renderMedia = function(media) {
 	var that = this;
 	//console.log(media);
@@ -52,14 +60,10 @@ J.Instagram.prototype.renderMedia = function(media) {
 		that.clearMedia();
 	}
 
-	var mediaArray = new Array();
 
 	media["instagram"].forEach(function(entry) {
 
 		var instaMedia = new J.InstaMedia(entry)
-
-		mediaArray.push(instaMedia);
-
 
 		that.InstaHTML.createMediaBox(instaMedia);
 		var modal = that.InstaHTML.createModal(instaMedia),
@@ -82,13 +86,13 @@ J.Instagram.prototype.renderMedia = function(media) {
 			if (instaMedia.user_has_liked) {
 
 				// Ajax Request.
-				that.ajax.UnLike(that.requestPath, instaID);
+				that.ajax.request("unlike", instaID);
 				instaMedia.user_has_liked = false;
 				return false;
 			} else {
 
 				// Ajax Request.
-				that.ajax.Like(that.requestPath, instaID);
+				that.ajax.request("like", instaID);
 				instaMedia.user_has_liked = true;
 				return false;
 			}
@@ -109,11 +113,8 @@ J.Instagram.prototype.renderMedia = function(media) {
 
 	});
 
-	console.log(mediaArray);
-
 
 	this.nextMediaSet = media["pagination"].next_url;
-	console.log(this.nextMediaSet);
 	
 	$("#tagLabel").removeClass('hidden');
 	$("#tagLabel").html(this.currentTag);
@@ -129,19 +130,16 @@ J.Instagram.prototype.renderMedia = function(media) {
 
 	this.oldTag = this.currentTag;
 
-	
 	$('#loadMore').off('click');
-	// Flytta denna skiten
 	$("#loadMore").click( function() {
 		that.loadMoreMedia();
-
 	});	
-
 
 }
 
-
-
+/**
+ * @return void
+ */
 J.Instagram.prototype.noMediaFound = function() {
 	var that = this;
 	this.clearMedia();
@@ -150,8 +148,12 @@ J.Instagram.prototype.noMediaFound = function() {
 	
 	$( "#media" ).append(box);
 	$("#loadMore").addClass('hidden');
+	$('#loadingDiv').hide();
 }
 
+/**
+ * @return void
+ */
 J.Instagram.prototype.clearMedia = function() {
 	var that = this;
 	$("#media").empty();

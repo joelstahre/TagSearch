@@ -5,6 +5,10 @@ J.InstaHTML = function () {
 
 }
 
+/**
+ * @param  object instaMedia
+ * @return void
+ */
 J.InstaHTML.prototype.createMediaBox = function(instaMedia) {
 
 	var type = "";
@@ -38,6 +42,10 @@ J.InstaHTML.prototype.createMediaBox = function(instaMedia) {
 	$( "#media" ).append(box);
 }
 
+/**
+ * @param  object instaMedia
+ * @return string modal
+ */
 J.InstaHTML.prototype.createModal = function(instaMedia) { 
 	var that = this;
 
@@ -56,7 +64,7 @@ J.InstaHTML.prototype.createModal = function(instaMedia) {
 				    '<div class="modal-content">'+
 				      '<div class="modal-header">'+
 				        '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'+
-				        '<h4 class="modal-title" id="myModalLabel">'+instaMedia.username+'</h4>'+
+				        '<a href="'+instaMedia.link+'" target="_blank"><h4 class="modal-title" id="myModalLabel">'+instaMedia.username+'</h4></a>'+
 				      '</div>'+
 				      '<div class="modal-body">'+
 				      	'<div class="modal-inner">'+
@@ -65,7 +73,7 @@ J.InstaHTML.prototype.createModal = function(instaMedia) {
 					        '<div class="media modal-aside">'+
 					        	'<img class="pull-left modal-aside-pic" src="'+instaMedia.caption_profile_pic+'" />'+
 					        	'<div class="media-body">'+
-					        		'<h4 class="media-heading">'+instaMedia.username+'</h4>'+
+					        		'<a href="'+instaMedia.link+'" target="_blank"><h4 class="media-heading">'+instaMedia.username+'</h4></a>'+
 					        		instaMedia.text+
 					        	'</div>'+
 					        	
@@ -90,7 +98,11 @@ J.InstaHTML.prototype.createModal = function(instaMedia) {
 }
 
 
-
+/**
+ * @param bool like
+ * @param int id
+ * @return string
+ */
 J.InstaHTML.prototype.Like = function(like, id) { 
 
 	if (like != null) {
@@ -104,6 +116,10 @@ J.InstaHTML.prototype.Like = function(like, id) {
 	}
 }
 
+/**
+ * @param bool liked
+ * @return string
+ */
 J.InstaHTML.prototype.updateLike = function(liked) { 
 
 	if (liked) {
@@ -113,8 +129,18 @@ J.InstaHTML.prototype.updateLike = function(liked) {
 	}
 }
 
+/**
+ * @return string
+ */
+J.InstaHTML.prototype.likeError = function() { 
+
+	return "Something went wrong when Like/unliking";	
+}
 
 
+/**
+ * @return string
+ */
 J.InstaHTML.prototype.noMediaFound = function() { 
 	var box = '<div class="col-md-6">'+
 					'<div class="no-media well well-sm">'+

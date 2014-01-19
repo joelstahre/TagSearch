@@ -5,80 +5,67 @@ J.Ajax = function (instagram, instaHTML) {
 	
 	this.instagram = instagram;
 	this.instaHTML = instaHTML;
+	this.requestPath = "backend/functions.php";
 }
 
-J.Ajax.prototype.getMedia = function(requestPath, tag) {
+/**
+ * @param  string action
+ * @param  string type
+ */
+J.Ajax.prototype.request = function(action, type) {
 	var that = this;
 
 	$.ajax({
 		type: "GET",
-		  url: requestPath,
-		  data: {tag: tag},
+		  url: that.requestPath,
+		  data: {action: action, data: type},
 		  success: function(data){
-		  		//console.log("Instagram data (instagram.js): "+data);
-		  		
-		  		if (data == "ERROR") {
-					that.instagram.noMediaFound();
-				} else {
-					$('#loadingDiv').hide();
-					var media = JSON.parse(data);
 
-					if (media.instagram == null) {
-					  	that.instagram.noMediaFound();
+		  		//tag
+		  		if (action === "tag") {
+		  			if (data == "ERROR") {
+						that.instagram.noMediaFound();
 					} else {
-					  	//console.log(data);
-					  	that.instagram.renderMedia(media);
+						$('#loadingDiv').hide();
+						var media = JSON.parse(data);
+
+						if (media.instagram == null) {
+						  	that.instagram.noMediaFound();
+						} else {
+						  	that.instagram.renderMedia(media);
+						}
 					}
-				}
-		  		
-		  },
-		 
-		  error: function(jqXHR, textStatus, errorThrown){
-		    console.log('.ajax() request failed: ' + textStatus + ', ' + errorThrown);    
-		  },
-	});
-
-}
-
-J.Ajax.prototype.Like = function(requestPath, id) {
-	var that = this;
-
-	$.ajax({
-		type: "GET",
-		  url: requestPath,
-		  data: {like: id},
-		  success: function(data){
-		  		
-		  		var parsed = JSON.parse(data);
-
-		  		if (parsed.meta.code == 200) {
-
-
-		  			$("#"+id+"like").html(that.instaHTML.updateLike(true));
-		  			console.log("japp");
 		  		}
 
-		  },
-		 
-		  error: function(jqXHR, textStatus, errorThrown){
-		    console.log('.ajax() request failed: ' + textStatus + ', ' + errorThrown);    
-		  },
-	});
-}
+		  		//loadMore
+		  		if (action === "loadMore") {
+		  			if (data == "ERROR") {
+			  			that.instagram.noMediaFound();
+			  		} else {
+			  			$('#loadingDiv').hide();
+			  			$('#buttonLoader').hide();
 
-J.Ajax.prototype.UnLike = function(requestPath, id) {
-	var that = this;
+			  			var media = JSON.parse(data);
+			  			that.instagram.renderMedia(media);
+			  		}
+		  		}
 
-	$.ajax({
-		type: "GET",
-		  url: requestPath,
-		  data: {unlike: id},
-		  success: function(data){
+		  		//like
+		  		if (action === "like") {
+		  			var parsed = JSON.parse(data);
 
-		  		var parsed = JSON.parse(data);
+		  			if (parsed.meta.code == 200) {
+			  			$("#"+type+"like").html(that.instaHTML.updateLike(true));
+		  			} else {$("#"+type+"like").html(that.instaHTML.likeError());}
+		  		}
 
-		  		if (parsed.meta.code == 200) {
-		  			$("#"+id+"like").html(that.instaHTML.updateLike(false));
+		  		//unlike
+		  		if (action === "unlike") {
+		  			var parsed = JSON.parse(data);
+
+			  		if (parsed.meta.code == 200) {
+			  			$("#"+type+"like").html(that.instaHTML.updateLike(false));
+			  		} else {$("#"+type+"like").html(that.instaHTML.likeError());}
 		  		}
 		  },
 		 
@@ -86,33 +73,7 @@ J.Ajax.prototype.UnLike = function(requestPath, id) {
 		    console.log('.ajax() request failed: ' + textStatus + ', ' + errorThrown);    
 		  },
 	});
-	
 
 }
 
 
-J.Ajax.prototype.loadMoreMedia = function(requestPath, nextMediaSet) {
-	var that = this;
-
-	$.ajax({
-		type: "GET",
-		  url: requestPath,
-		  data: {url: nextMediaSet},
-		  success: function(data){
-		  		//console.log("Instagram data (instagram.js): "+data);
-		  		if (data == "ERROR") {
-		  			that.instagram.noMediaFound();
-		  		} else {
-		  			$('#loadingDiv').hide();
-		  			$('#buttonLoader').hide();
-		  			//console.log(data);
-		  			that.instagram.renderMedia(JSON.parse(data));
-		  		}
-		  },
-		 
-		  error: function(jqXHR, textStatus, errorThrown){
-		    console.log('.ajax() request failed: ' + textStatus + ', ' + errorThrown);    
-		  },
-		});
-
-}

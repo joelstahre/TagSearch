@@ -8,7 +8,9 @@ J.Twitter = function () {
 
 }
 
-
+/**
+ * @return void
+ */
 J.Twitter.prototype.getTrends = function() {
 	var that = this;
 
@@ -27,7 +29,9 @@ J.Twitter.prototype.getTrends = function() {
 	});
 }
 
-
+/**
+ * @return void
+ */
 J.Twitter.prototype.renderTrends = function(trends) {
 	var that = this;
 	this.trends = trends;

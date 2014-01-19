@@ -6,7 +6,6 @@ class TwitterTrends {
 	private $consumerSecret = "2PDKu6BGhgUNAbpXno30391IOlm3pMnUn43tnBwh8";
 	private $userToken = "44170433-rchAfQQc02XZ6hDdkIBdex99bxSV3X8a2laQ8bAqE";
 	private $userSecret = "hCrvZW3h74OSHrngNOtneeuVYQIB45isUkA9rm853vITE";
-
 	private $trendsURL = "1.1/trends/place.json";
 
 	public function getRequest() {

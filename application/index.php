@@ -9,7 +9,6 @@ if (isset($_GET["signin"])) {
 }
 
 $signIn->check();
-
 ?>
 
 <!doctype html>
@@ -71,20 +70,27 @@ $signIn->check();
 					</div>
 
 					<div id="media">
-
-
-
+						<div class="col-md-9">
+							<div class="jumbotron">
+						  		<h1>Welcome to Tagsearch!</h1>
+						  		<p id="jumboFirst">Do you love instagram? Well, we do!</p>
+								<p>Here you get the latest trends from twitter, presented to you in the form of pictures from instagram.</p>
+						  		<p>If you sign in, you will also get the incredible ability to search on your favorite topics, and spread your love by liking all the wonderful pictures.</p>
+						  		<p>Why are you still here? Select a tag from the trend list, or sign in and start searching!</p>
+							</div>
+						</div>
 					</div>
 				</div>
 
 				<div id="loadMoreDiv">
 					<button type="button" id="loadMore" class="btn btn-default btn-lg hidden">Load more pictures <img id="buttonLoader" src="public/img/loader.gif" alt="loader symbol"></button>
-
 				</div>
 			</div>
 		</div>
 		
-				
+		<p id="back-top">
+			<a href="#top"><span><i class="fa fa-arrow-circle-o-up"></i></span></a>
+		</p>
 		<div id='footer'>
 	      	<div class='container'>
 	        	<p class='text-muted'>Copyright 
@@ -103,6 +109,8 @@ $signIn->check();
 		<script src='http://code.jquery.com/jquery-1.10.1.min.js'></script>
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 		<script src='public/js/App.js'></script>
+		<script src='public/js/General.js'></script>
+		<script src='public/js/LocalStorage.js'></script>
 		<script src='public/js/Twitter.js'></script>
 		<script src='public/js/Instagram.js'></script>
 		<script src='public/js/InstaHTML.js'></script>

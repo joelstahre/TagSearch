@@ -3,6 +3,7 @@ var J = J || {};
 J.InstaMedia = function (entry) {
 	var that = this;
 	
+	this.link = entry.link;
 	this.id = entry.id;
 	this.type = entry.type;
 	this.video_URL = "";

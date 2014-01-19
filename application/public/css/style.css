@@ -1,4 +1,9 @@
+html {
+	height: 85%;
+}
+
 body {
+	height: 100%;
 	background: url(../img/bg.png) repeat;
 }
 
@@ -26,6 +31,25 @@ body {
 	font-size: 20px;
 	color: #777;
 }
+
+.jumbotron { 
+	background-color: #fff;
+	
+}
+
+.jumbotron h1 { 
+	font-size: 2em;
+}
+
+#jumboFirst {
+	font-size: 100%;
+}
+
+.jumbotron p { 
+	font-size: 90%;
+}
+
+
 
 
 /* Header
@@ -70,11 +94,20 @@ body {
 }
 
 #wrap {
+	min-height: 100%;
+	height: auto;
 	margin-top: 70px;
 }
 
 .welcome-user {
 	font-weight: bold;
+}
+
+#recent {
+	display: inline;
+	float: left;
+	padding: 15px;
+	font-style: italic;
 }
 
 /* IMG BOX
@@ -144,7 +177,7 @@ body {
 }
 
 .modal-dialog {
-	width: 900px;
+	width: 50%;
 	height: 600px;
 }
 
@@ -154,8 +187,9 @@ body {
 
 .modal-img {
 	float: left;
-	width: 440px;
-	height: 440px;
+	width: 40%;
+	height: 40%;
+
 }
 
 .modal-aside {
@@ -181,4 +215,58 @@ body {
 
 .like a {
 	color: #CE2A34;
+}
+
+#footer {
+	height: 60px;
+}
+
+@media(max-width: 699px) {
+  	.modal-dialog {
+		width: 95%;
+		height: 80%;
+	}
+}
+
+
+
+#back-top {
+	font-size: 75px;
+	position: fixed;
+	bottom: 0px;
+	right: 20px;
+}
+
+#back-top a {
+	width: 108px;
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	color: #bbb;
+
+	/* transition */
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
+	transition: 1s;
+}
+
+
+#back-top span {
+	width: 108px;
+	height: 108px;
+	display: block;
+	margin-bottom: 7px;
+
+	/* rounded corners */
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+
+	/* transition */
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
+	transition: 1s;
+}
+#back-top a:hover span {
+	background-color: #777;
 }
