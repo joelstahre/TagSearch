@@ -2,14 +2,15 @@
 
 class TwitterTrends {
 
-	private $consumerKey = "MrXSfKfVNvFwNJH1O0oVw";
-	private $consumerSecret = "2PDKu6BGhgUNAbpXno30391IOlm3pMnUn43tnBwh8";
-	private $userToken = "44170433-rchAfQQc02XZ6hDdkIBdex99bxSV3X8a2laQ8bAqE";
-	private $userSecret = "hCrvZW3h74OSHrngNOtneeuVYQIB45isUkA9rm853vITE";
+	private $consumerKey = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+	private $consumerSecret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+	private $userToken = "xxxxxxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+	private $userSecret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 	private $trendsURL = "1.1/trends/place.json";
 
 	public function getRequest() {
 
+		//Sweden
 		$location = '23424954';
 
 		$trends;
