@@ -18,7 +18,7 @@ class SignInHandler {
 	}
 
 	public function sendToInsta() {
-		header("Location: https://api.instagram.com/oauth/authorize?client_id=648d5bb844884b7ab01141109a108660&redirect_uri=http://www.tagsearch.se&scope=likes&response_type=code");
+		header("Location: https://api.instagram.com/oauth/authorize?client_id=xxxxxxxxxx&redirect_uri=http://www.tagsearch.se&scope=likes&response_type=code");
 	}					  
 
 
