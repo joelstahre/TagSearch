@@ -2,8 +2,8 @@
 
 class Instagram {
 
-	private $clientID = "648d5bb844884b7ab01141109a108660";
-	private $clientSecret = "f1ac1d0d3ac647d5a02e2889673878b3";
+	private $clientID = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+	private $clientSecret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
 	private $redirectURI = "http://www.tagsearch.se";
 	private $accessTokenURL = "https://api.instagram.com/oauth/access_token";
 	private $tagSearchURL = "https://api.instagram.com/v1/tags/";
